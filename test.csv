@@ -1,0 +1,14 @@
+zip_code;rate_name;valid_since;source_rate_id;consumption_from;consumption_until;monthly_base_price;working_price;is_business_rate;bonus1_amount;bonus1_external_ID;bonus1_type;bonus2_amount;bonus2_external_ID;bonus2_type;price_guarantee_type;price_guarantee_until_date;price_guarantee_number_of_months;payment_period_number_of_months;initial_contract_period;notice_period;contract_extension;is_online_communication_only;is_eco;rate_seal_ids;energy_mix_eco_percentage;energy_mix_nuclear_percentage;energy_mix_fossil_percentage;energy_mix_natural_gas_percentage;energy_mix_bio_gas_percentage
+1067;Shell PrivatEnergie Strom Bonus 12;15.09.16;3;500;1499;100;25,01;FALSE;0;;Sofortbonus;15%;;Neukundenbonus;eingeschr�_nkte Preisgarantie;;12 Monate;1;12;;;FALSE;FALSE;;;;;;
+1067;Shell PrivatEnergie Strom Bonus 12;15.09.16;3;1500;1999;100;25,01;FALSE;50;;Sofortbonus;15%;;Neukundenbonus;eingeschr�_nkte Preisgarantie;;12 Monate;1;12;;;FALSE;FALSE;;;;;;
+1067;Shell PrivatEnergie Strom Bonus 12;15.09.16;3;2000;2499;100;25,01;FALSE;70;;Sofortbonus;15%;;Neukundenbonus;eingeschr�_nkte Preisgarantie;;12 Monate;1;12;;;FALSE;FALSE;;;;;;
+1067;Shell PrivatEnergie Strom Bonus 12;15.09.16;3;2500;2999;100;25,01;FALSE;80;;Sofortbonus;15%;;Neukundenbonus;eingeschr�_nkte Preisgarantie;;12 Monate;1;12;;;FALSE;FALSE;;;;;;
+1067;Shell PrivatEnergie Strom Bonus 12;15.09.16;3;3000;3499;100;25,01;FALSE;90;;Sofortbonus;15%;;Neukundenbonus;eingeschr�_nkte Preisgarantie;;12 Monate;1;12;;;FALSE;FALSE;;;;;;
+1067;Shell PrivatEnergie Strom Bonus 12;15.09.16;3;3500;3999;100;25,01;FALSE;110;;Sofortbonus;15%;;Neukundenbonus;eingeschr�_nkte Preisgarantie;;12 Monate;1;12;;;FALSE;FALSE;;;;;;
+1067;Shell PrivatEnergie Strom Bonus 12;15.09.16;3;4000;4499;100;25,01;FALSE;120;;Sofortbonus;15%;;Neukundenbonus;eingeschr�_nkte Preisgarantie;;12 Monate;1;12;;;FALSE;FALSE;;;;;;
+1067;Shell PrivatEnergie Strom Bonus 12;15.09.16;3;4500;4999;100;25,01;FALSE;130;;Sofortbonus;15%;;Neukundenbonus;eingeschr�_nkte Preisgarantie;;12 Monate;1;12;;;FALSE;FALSE;;;;;;
+1067;Shell PrivatEnergie Strom Bonus 12;15.09.16;3;5000;5999;100;25,01;FALSE;120;;Sofortbonus;15%;;Neukundenbonus;eingeschr�_nkte Preisgarantie;;12 Monate;1;12;;;FALSE;FALSE;;;;;;
+1067;Shell PrivatEnergie Strom Bonus 12;15.09.16;3;6000;6999;100;25,01;FALSE;100;;Sofortbonus;15%;;Neukundenbonus;eingeschr�_nkte Preisgarantie;;12 Monate;1;12;;;FALSE;FALSE;;;;;;
+1067;Shell PrivatEnergie Strom Bonus 12;15.09.16;3;7000;9999;100;25,01;FALSE;90;;Sofortbonus;15%;;Neukundenbonus;eingeschr�_nkte Preisgarantie;;12 Monate;1;12;;;FALSE;FALSE;;;;;;
+1067;Shell PrivatEnergie Strom Bonus 12;15.09.16;3;10000;19999;100;25,01;FALSE;0;;Sofortbonus;15%;;Neukundenbonus;eingeschr�_nkte Preisgarantie;;12 Monate;1;12;;;FALSE;FALSE;;;;;;
+1067;Shell PrivatEnergie Strom Bonus 12;15.09.16;3;20000;100000;100;25,01;FALSE;0;;Sofortbonus;10%;;Neukundenbonus;eingeschr�_nkte Preisgarantie;;12 Monate;1;12;;;FALSE;FALSE;;;;;;
