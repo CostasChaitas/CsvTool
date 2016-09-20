@@ -44,81 +44,148 @@ if ( isset($_FILES["file"])) {
          }
          else {
 
+
+           $titles = [];
            $rest = [];
            $row = 1;
+
+
            ini_set('auto_detect_line_endings',TRUE);
             if (($handle = fopen($_FILES["file"]["name"], "r")) !== FALSE) {
-              echo "<form action='exportCsv.php' method='post'>";
+
               if($_POST["separator"]=="comma"){
-                echo "<div class='col-md-4'>";
                 if (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                      $num = count($data);
                      //echo "<p> $num fields in line $row: <br /></p>\n";
-                     echo "<h4 class='text-center'>CSV Titles</h4>";
                        for ($c=0; $c < $num; $c++) {
-                           echo"<div class='col-md-offset-3 col-md-6'>";
-                           echo"<input type='type' class='form-control' name='$data[$c]' value='$data[$c]'> ";
-                           echo"</div>";
+                           array_push($titles,$data[$c]);
                        }
-                     echo"<div class='col-md-offset-3 col-md-6'>";
-                     echo "<input type='submit' name='submit' class='btn btn-success' value='Submit Button'>";
-                     echo "</div>";
-
                 }
-                echo "</div>";
-                echo "<div class='col-md-8'>";
-                echo "<h4 class='text-center'>CSV Values</h4>";
                 while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-                  array_push($rest,$data);
+                   array_push($rest,$data);
                    $num = count($data);
-                     echo "<div class='col-md-10'>";
-
-                       for ($c=0; $c < $num; $c++) {
-                         echo "<tr>";
-                                echo "<td>" . htmlspecialchars($data[$c]) . "</td>";
-                          echo "</tr>\n";
-                       }
-                     echo "</div>";
+                   $row++;
                 }
-                echo "</div>";
               }elseif($_POST["separator"]=="questionMark"){
-                echo "<div class='col-md-4'>";
                 if (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
                      $num = count($data);
-                     //echo "<p> $num fields in line $row: <br /></p>\n";
-                     echo "<h4 class='text-center'>CSV Titles</h4>";
                        for ($c=0; $c < $num; $c++) {
-                           echo"<div class='col-md-offset-3 col-md-6'>";
-                           echo"<input type='type' class='form-control' name='$data[$c]' value='$data[$c]'> ";
-                           echo"</div>";
+                         array_push($titles,$data[$c]);
                        }
-                     echo"<div class='col-md-offset-3 col-md-6'>";
-                     echo "<input type='submit' name='submit' class='btn btn-success' value='Submit Button'>";
-                     echo"</div>";
-                     echo "</div>";
+                }
+                while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
+                   array_push($rest,$data);
+                   $num = count($data);
+                   $row++;
 
                 }
-                echo "</div>";
-                echo "<div class='col-md-8'>";
-                echo "<h4 class='text-center'>CSV Values</h4>";
-                while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
-                  array_push($rest,$data);
-                   $num = count($data);
-                     echo "<div class='col-md-12'>";
-                       for ($c=0; $c < $num; $c++) {
-                         echo "<tr>";
-                                echo "<td>" . htmlspecialchars($data[$c]) . "</td>";
-                          echo "</tr>\n";
-                       }
-                     echo "</div>";
-                }
-                echo "</div>";
               }
+
+              array_unshift($rest, $titles);
+
+              $suwag = Array(
+                      'zip_code',
+                      'rate_name',
+                      'valid_since',
+                      'source_rate_id',
+                      'consumption_from',
+                      'consumption_until',
+                      'monthly_base_price',
+                      'working_price',
+                      'is_business_rate',
+                      'bonus1_amount',
+                      'bonus1_external_ID',
+                      'bonus1_type',
+                      'bonus2_amount',
+                      'bonus2_external_ID',
+                      'bonus2_type',
+                      'price_guarantee_type',
+                      'price_guarantee_until_date',
+                      'price_guarantee_number_of_months',
+                      'payment_period_number_of_months',
+                      'initial_contract_period',
+                      'notice_period',
+                      'contract_extension',
+                      'is_online_communication_only',
+                      'is_eco',
+                      'rate_seal_ids',
+                      'energy_mix_eco_percentage',
+                      'energy_mix_nuclear',
+                      'energy_mix_coal',
+                      'energy_mix_natural_gas',
+                      'energy_mix_other_fossile_energy_sources',
+                      'energy_mix_renewable_energies_according_eeg',
+                      'energy_mix_renewable_energies',
+                      'energy_mix_co2_emission',
+                      'energy_mix_nuclear_waste',
+                      'energy_mix_year',
+                      'energy_mix_natural_gas_percentage',
+                      'energy_mix_bio_gas_percentage',
+                      'rating_initial_contract_duration',
+                      'rating_extension_of_contract_duration',
+                      'rating_notice_period',
+                      'rating_duration_price_guarantee',
+                      'rating_quality_price_guarantee',
+                      'rating_bonus_payment',
+                      'rating_deduction',
+                      'time_periods_from',
+                      'time_periods_until'
+            );
+
+            array_splice($rest[0], -4);
+            foreach ($rest as $k => $v) {
+               if ($k < 1) continue;
+               array_splice($rest[$k], -4);
+            }
+
+            $union = array_diff($suwag, $rest[0]);
+
+            foreach($union as $key=>$value){
+              array_splice($rest[0], $key, 0, $value);
+              foreach ($rest as $k => $v) {
+                 if ($k < 1) continue;
+                 array_splice($rest[$k], $key, 0, "Empty Value");
+              }
+            }
+
+            echo "<form action='exportCsv.php' method='post'>";
+            echo "<div class='col-md-10'>";
+            echo "<table class='table table-bordered'>";
+            echo"<thead><tr>";
+            foreach($rest[0] as $values){
+              echo "<th>$values</th>";
+            }
+            echo"</tr></thead>";
+            echo"<tbody>";
+            foreach ($rest as $k => $v) {
+               if ($k < 1) continue;
+                 echo "<tr>";
+
+                 if(mb_strlen($v[0])){
+                   $v[0]=str_pad($v[0], 5, "0", STR_PAD_LEFT);
+                 }
+                 if(!empty($v[11])){
+                   $v[11] = "https://docs.google.com/spreadsheets/d/1Jrp3I1x-Lawq_gchQy0NKGg9fkH5kC4eOEtiHPUplxA/edit#gid=0";
+                 };
+                 if(!empty($v[14])){
+                   $v[14] = "https://docs.google.com/spreadsheets/d/1Jrp3I1x-Lawq_gchQy0NKGg9fkH5kC4eOEtiHPUplxA/edit#gid=0";
+                 };
+
+                 for($i=0; $i<$v; $i++){
+                   echo $v[$i];
+                 }
+
+                 foreach($v as $values){
+                   echo "<th><input type='text' value='$values'></th>";
+                 }
+               echo "</tr>";
+            }
+            echo "</tr></tbody></table>";
+            echo "</form>";
+
 
               ini_set('auto_detect_line_endings',FALSE);
               fclose($handle);
-              echo "</form>";
-
             }
 
             $_SESSION['rest']=$rest;
